@@ -33,5 +33,8 @@
 		<div>
 			<p>Maintained by the community for the community</p>
 		</div>
+		<div>
+			<a href="https://github.com/tricked-dev/bun-modules">Repository</a>
+		</div>
 	</footer>
 </div>
