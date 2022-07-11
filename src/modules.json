@@ -3,5 +3,6 @@
   "hyperbun",
   "baojs",
   "kingworld",
-  "kysely-bun-sqlite"
+  "kysely-bun-sqlite",
+  "svelte-adapter-bun"
 ]

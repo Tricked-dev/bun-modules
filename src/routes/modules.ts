@@ -2,10 +2,10 @@ import { getModule, type PKG } from "../getModule";
 
 import modules from "../modules.json";
 
-let cache: PKG[];
+let cache: PKG[] = [];
 
 export const get = async () => {
-  if (cache) {
+  if (cache?.length !== 0) {
     return cache;
   }
   const temp = [];
