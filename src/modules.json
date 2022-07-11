@@ -4,5 +4,6 @@
   "baojs",
   "kingworld",
   "kysely-bun-sqlite",
-  "svelte-adapter-bun"
+  "svelte-adapter-bun",
+  "@kapsonfire/bun-bakery"
 ]
