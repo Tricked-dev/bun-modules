@@ -1,6 +1,6 @@
-import { getAllModules, type PKG } from "../getModule";
+import { getAllModules, type Module } from "../getModule";
 
-let cache: PKG[] = [];
+let cache: Module[] = [];
 
 export const get = async () => {
   if (cache?.length !== 0) {

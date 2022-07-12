@@ -1,90 +1,77 @@
-//https://api.npms.io/v2/package/deno
-import modules from "./modules.json";
+const blacklisted = [
+  "random-bunny",
+  "test-package-bun-types",
+  "test-package-bun-types-123",
+  "test-package-bun-types-2",
+];
 
-export async function getModule(pkg: string): Promise<PKG> {
-  let res = await (await fetch("https://replicate.npmjs.com/" + pkg)).json();
-  return res;
+export async function getAllModules() {
+  const modules: PKG = await fetch(
+    `https://registry.npmjs.com/-/v1/search?size=250&text=keywords:bun,bun.js`,
+  ).then((r) => r.json());
+  return modules.objects.filter((x) => !blacklisted.includes(x.package.name));
 }
-export async function getAllModules(): Promise<PKG[]> {
-  const temp = [];
-
-  for (const module of modules) {
-    temp.push(getModule(encodeURIComponent(module)));
-  }
-
-  const res = await Promise.all(temp);
-  return res.filter((x) => x?.name);
-}
-
 export interface PKG {
-  _id: string;
-  _rev: string;
+  objects: Module[];
+  total: number;
+  time: string;
+}
+
+export interface Module {
+  package: Package;
+  flags?: Flags;
+  score: Score;
+  searchScore: number;
+}
+
+export interface Package {
   name: string;
-  "dist-tags": DistTags;
-  versions: Record<string, any>;
-  time: Record<string, string>;
-  maintainers: Maintainer[];
+  scope: string;
+  version: string;
   description: string;
-  homepage: string;
   keywords: string[];
-  repository: Repository;
-  author: Author;
-  bugs: Bugs;
-  readme: string;
-  readmeFilename: string;
-  users: Users;
-  license: string;
+  date: string;
+  links: Links;
+  author?: Author;
+  publisher: Publisher;
+  maintainers: Maintainer[];
 }
 
-export interface DistTags {
-  latest: string;
-}
-
-export interface Repository {
-  type: string;
-  url: string;
+export interface Links {
+  npm: string;
+  homepage?: string;
+  bugs?: string;
+  repository?: string;
 }
 
 export interface Author {
   name: string;
+  email?: string;
+  username?: string;
+  url?: string;
+}
+
+export interface Publisher {
+  username: string;
   email: string;
-  url: string;
-}
-
-export interface Bugs {
-  url: string;
-}
-
-export interface NpmUser {
-  name: string;
-  email: string;
-}
-
-export interface Dist {
-  integrity: string;
-  shasum: string;
-  tarball: string;
-  fileCount: number;
-  unpackedSize: number;
-  "npm-signature": string;
-  signatures: Signature[];
-}
-
-export interface Signature {
-  keyid: string;
-  sig: string;
 }
 
 export interface Maintainer {
-  name: string;
+  username: string;
   email: string;
 }
 
-export interface NpmOperationalInternal {
-  host: string;
-  tmp: string;
+export interface Flags {
+  unstable: boolean;
 }
 
-export interface Users {
-  rsp: boolean;
+export interface Score {
+  final: number;
+  detail: Detail;
+}
+
+export interface Detail {
+  quality: number;
+  popularity: number;
+  maintenance: number;
 }

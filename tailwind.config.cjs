@@ -16,7 +16,7 @@ const config = {
 					primary: '#06283D',
 					'primary-content': '#ffff',
 					secondary: '#1363DF',
-					accent: '#47B5FF',
+					accent: '#783aa8',
 					neutral: '#191D24',
 					'base-100': '#2A303C',
 					'base-200': '#262b36',
@@ -33,4 +33,3 @@ const config = {
 };
 
 module.exports = config;
-
