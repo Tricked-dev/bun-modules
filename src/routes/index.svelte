@@ -19,7 +19,13 @@
 	export let modules: PKG[];
 </script>
 
-<title>Awesome bun modules</title>
+<svelte:head>
+	<title>Awesome bun modules</title>
+	<meta name="og:description" content="A list of cherry picked bun compatible modules" />
+	<meta name="description" content="A list of cherry picked bun compatible modules" />
+	<meta name="og:title" content="Awesome bun modules" />
+	<meta name="theme-color" content="#0EC5FF" />
+</svelte:head>
 
 <div class="min-h-screen">
 	<div class="max-w-7xl mx-auto">
