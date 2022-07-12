@@ -28,7 +28,11 @@
 		<p>
 			{data.package.description || 'No description'}
 		</p>
-
+		<img
+			class="mt-auto mb-0 ml-auto mr-0"
+			alt={`${data.package.name} weekly downloads`}
+			src={`https://img.shields.io/npm/dw/${data.package.name}?color=783aa8`}
+		/>
 		<div class="gap-1 overflow-x-hidden">
 			{#each data?.package.keywords || [] as tag}
 				<span class="mr-1 badge badge-primary rounded-sm">{tag}</span>

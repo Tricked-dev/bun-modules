@@ -31,7 +31,7 @@
 
 <div class="min-h-screen">
 	<div class="max-w-7xl mx-auto">
-		<h1 class="text-xl py-4 text-center font-bold">Bun Compatible Modules!</h1>
+		<h1 class="text-xl py-4 text-center font-bold">Bun Native Modules!</h1>
 		<div>
 			<div>
 				<ul class="flex w-full">
