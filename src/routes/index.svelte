@@ -23,11 +23,13 @@
 
 <div class="min-h-screen">
 	<div class="max-w-7xl mx-auto">
-		<h1 class="text-xl py-4 text-center">Bun Compatible Modules!</h1>
+		<h1 class="text-xl py-4 text-center font-bold">Bun Compatible Modules!</h1>
 
-		{#each modules as module}
-			<Module data={module} />
-		{/each}
+		<div class="grid gap-5 px-4">
+			{#each modules as module}
+				<Module data={module} />
+			{/each}
+		</div>
 	</div>
 
 	<footer class="footer p-10 bg-neutral text-neutral-content mt-auto">

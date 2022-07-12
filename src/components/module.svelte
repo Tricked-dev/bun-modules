@@ -7,33 +7,35 @@
 <div class="prose prose-headings:my-0 prose-p:my-0 bg-base-300 pb-4 max-w-none">
 	<div class="bg-primary px-4 flex">
 		<h3>
-			{data.collected.metadata.name}
+			{data.name}
 		</h3>
 		<span class="ml-auto">
-			[ <a href={data.collected.metadata.links.npm}>NPM</a> |
-			<a href={data.collected.metadata.links.repository}>REPO</a>
-			{#if data.collected.metadata.links.bugs}
-				| <a href={data.collected.metadata.links.bugs}>BUGS</a>
+			[
+			<a href={`https://www.npmjs.com/package/${data.name}`}>NPM</a>
+			{#if data.repository?.url}
+				| <a href={data.repository.url}>REPO</a>
 			{/if}
-			{#if data.collected.metadata.links.homepage}
-				| <a href={data.collected.metadata.links.homepage}>HOME</a>
+			{#if data.bugs}
+				| <a href={data.bugs.url}>BUGS</a>
 			{/if}
-			{#if data.collected.metadata.links.documentation}
-				| <a href={data.collected.metadata.links.documentation}>DOCS</a>
+			{#if data.homepage}
+				| <a href={data.homepage}>HOME</a>
 			{/if}
 			]
 		</span>
 	</div>
 	<div class="px-4 pt-2">
 		<p>
-			{data.collected.metadata.description}
+			{data.description || 'No description'}
 		</p>
-		<div>
-			<a>License {data.collected.metadata.license}</a>
-		</div>
-		<div class="flex gap-1">
-			{#each data.collected.metadata.keywords as tag}
-				<span class="badge badge-primary rounded-sm">{tag}</span>
+		{#if data.license}
+			<div>
+				License {data.license}
+			</div>
+		{/if}
+		<div class="gap-1 overflow-x-hidden">
+			{#each data?.keywords || [] as tag}
+				<span class="mr-1 badge badge-primary rounded-sm">{tag}</span>
 			{/each}
 		</div>
 	</div>

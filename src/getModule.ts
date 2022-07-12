@@ -2,7 +2,7 @@
 import modules from "./modules.json";
 
 export async function getModule(pkg: string): Promise<PKG> {
-  let res = await (await fetch("https://api.npms.io/v2/package/" + pkg)).json();
+  let res = await (await fetch("https://replicate.npmjs.com/" + pkg)).json();
   return res;
 }
 export async function getAllModules(): Promise<PKG[]> {
@@ -12,57 +12,31 @@ export async function getAllModules(): Promise<PKG[]> {
     temp.push(getModule(module));
   }
   const res = await Promise.all(temp);
-  return res.filter((x) => x?.collected?.metadata);
+  return res.filter((x) => x?.name);
 }
 
 export interface PKG {
-  analyzedAt: string;
-  collected: Collected;
-  evaluation: Evaluation;
-  score: Score;
-}
-
-export interface Collected {
-  metadata: Metadata;
-  npm: Npm;
-  github: Github;
-  source: Source;
-}
-
-export interface Metadata {
+  _id: string;
+  _rev: string;
   name: string;
-  scope: string;
-  version: string;
-  description: string;
-  keywords: string[];
-  date: string;
-  author: Author;
-  publisher: Publisher;
+  "dist-tags": DistTags;
+  versions: Record<string, any>;
+  time: Record<string, string>;
   maintainers: Maintainer[];
+  description: string;
+  homepage: string;
+  keywords: string[];
   repository: Repository;
-  links: Links;
-  license: string;
-  dependencies: Dependencies;
-  releases: Release[];
-  hasTestScript: boolean;
+  author: Author;
+  bugs: Bugs;
   readme: string;
+  readmeFilename: string;
+  users: Users;
+  license: string;
 }
 
-export interface Author {
-  name: string;
-  email: string;
-  url: string;
-  username: string;
-}
-
-export interface Publisher {
-  username: string;
-  email: string;
-}
-
-export interface Maintainer {
-  username: string;
-  email: string;
+export interface DistTags {
+  latest: string;
 }
 
 export interface Repository {
@@ -70,163 +44,46 @@ export interface Repository {
   url: string;
 }
 
-export interface Links {
-  npm: string;
-  homepage: string;
-  repository: string;
-  bugs: string;
-  documentation: string;
+export interface Author {
+  name: string;
+  email: string;
+  url: string;
 }
 
-export interface Dependencies {
-  dafo: string;
-  noda: string;
-  qir: string;
+export interface Bugs {
+  url: string;
 }
 
-export interface Release {
-  from: string;
-  to: string;
-  count: number;
+export interface NpmUser {
+  name: string;
+  email: string;
 }
 
-export interface Npm {
-  downloads: Download[];
-  starsCount: number;
+export interface Dist {
+  integrity: string;
+  shasum: string;
+  tarball: string;
+  fileCount: number;
+  unpackedSize: number;
+  "npm-signature": string;
+  signatures: Signature[];
 }
 
-export interface Download {
-  from: string;
-  to: string;
-  count: number;
+export interface Signature {
+  keyid: string;
+  sig: string;
 }
 
-export interface Github {
-  starsCount: number;
-  forksCount: number;
-  subscribersCount: number;
-  issues: Issues;
-  contributors: Contributor[];
-  commits: Commit[];
+export interface Maintainer {
+  name: string;
+  email: string;
 }
 
-export interface Issues {
-  count: number;
-  openCount: number;
-  distribution: Distribution;
-  isDisabled: boolean;
+export interface NpmOperationalInternal {
+  host: string;
+  tmp: string;
 }
 
-export interface Distribution {
-  "3600": number;
-  "10800": number;
-  "32400": number;
-  "97200": number;
-  "291600": number;
-  "874800": number;
-  "2624400": number;
-  "7873200": number;
-  "23619600": number;
-  "70858800": number;
-  "212576400": number;
-}
-
-export interface Contributor {
-  username: string;
-  commitsCount: number;
-}
-
-export interface Commit {
-  from: string;
-  to: string;
-  count: number;
-}
-
-export interface Source {
-  files: Files;
-  badges: Badge[];
-  outdatedDependencies: OutdatedDependencies;
-}
-
-export interface Files {
-  readmeSize: number;
-  testsSize: number;
-  hasNpmIgnore: boolean;
-  hasChangelog: boolean;
-}
-
-export interface Badge {
-  urls: Urls;
-  info: Info;
-}
-
-export interface Urls {
-  original: string;
-  shields: string;
-  content: string;
-}
-
-export interface Info {
-  service: string;
-  type: string;
-  modifiers: Modifiers;
-}
-
-export interface Modifiers {
-  type: string;
-}
-
-export interface OutdatedDependencies {
-  qir: Qir;
-  dafo: Dafo;
-}
-
-export interface Qir {
-  required: string;
-  stable: string;
-  latest: string;
-}
-
-export interface Dafo {
-  required: string;
-  stable: string;
-  latest: string;
-}
-
-export interface Evaluation {
-  quality: Quality;
-  popularity: Popularity;
-  maintenance: Maintenance;
-}
-
-export interface Quality {
-  carefulness: number;
-  tests: number;
-  health: number;
-  branding: number;
-}
-
-export interface Popularity {
-  communityInterest: number;
-  downloadsCount: number;
-  downloadsAcceleration: number;
-  dependentsCount: number;
-}
-
-export interface Maintenance {
-  releasesFrequency: number;
-  commitsFrequency: number;
-  openIssues: number;
-  issuesDistribution: number;
-}
-
-export interface Score {
-  final: number;
-  detail: Detail;
-}
-
-export interface Detail {
-  quality: number;
-  popularity: number;
-  maintenance: number;
+export interface Users {
+  rsp: boolean;
 }
