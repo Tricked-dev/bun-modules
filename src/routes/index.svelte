@@ -1,6 +1,9 @@
 <script context="module" lang="ts">
 	export const load = async ({ fetch }: any) => {
-		const res = await (await fetch('/modules')).json();
+		let res: PKG[] = await (await fetch('/modules')).json();
+		if (res.length == 0) {
+			res = await getAllModules();
+		}
 		return {
 			props: {
 				modules: res
@@ -10,7 +13,7 @@
 </script>
 
 <script lang="ts">
-	import type { PKG } from '../getModule';
+	import { getAllModules, type PKG } from '../getModule';
 
 	import Module from '../components/module.svelte';
 	export let modules: PKG[];
@@ -23,9 +26,7 @@
 		<h1 class="text-xl py-4 text-center">Bun Compatible Modules!</h1>
 
 		{#each modules as module}
-			{#if module?.collected?.metadata}
-				<Module data={module} />
-			{/if}
+			<Module data={module} />
 		{/each}
 	</div>
 

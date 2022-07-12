@@ -1,8 +1,18 @@
 //https://api.npms.io/v2/package/deno
+import modules from "./modules.json";
 
 export async function getModule(pkg: string): Promise<PKG> {
   let res = await (await fetch("https://api.npms.io/v2/package/" + pkg)).json();
   return res;
+}
+export async function getAllModules(): Promise<PKG[]> {
+  const temp = [];
+
+  for (const module of modules) {
+    temp.push(getModule(module));
+  }
+  const res = await Promise.all(temp);
+  return res.filter((x) => x?.collected?.metadata);
 }
 
 export interface PKG {
