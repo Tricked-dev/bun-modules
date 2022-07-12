@@ -1,4 +1,6 @@
 const blacklisted = [
+  // bun is not owned by jarred
+  "bun",
   "random-bunny",
   "test-package-bun-types",
   "test-package-bun-types-123",

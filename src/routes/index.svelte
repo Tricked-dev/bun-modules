@@ -56,9 +56,14 @@
 	<footer class="footer p-10 bg-neutral text-neutral-content mt-auto pt-4">
 		<div>
 			<p>This list is automatically fetched from npm api</p>
-			<p>Made by tricked-dev</p>
+			<p>Made by <a href="https://github.com/tricked-dev">tricked-dev</a></p>
 		</div>
 		<div>
+			<p>
+				To get your modules added to you just have to tag your project with <kbd class="kbd"
+					>bun</kbd
+				>
+			</p>
 			<a href="https://github.com/tricked-dev/bun-modules">Repository</a>
 		</div>
 	</footer>
