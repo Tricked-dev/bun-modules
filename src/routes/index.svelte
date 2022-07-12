@@ -31,7 +31,14 @@
 
 <div class="min-h-screen">
 	<div class="max-w-7xl mx-auto">
-		<h1 class="text-xl py-4 text-center font-bold">Bun Native Modules!</h1>
+		<div class="py-4 text-center">
+			<h1 class="text-xl font-bold">Bun Native Modules!</h1>
+			<p>
+				This is just a list with npm packages with the keyword `bun` this is no way a full list of
+				modules that bun support's.
+			</p>
+		</div>
+
 		<div>
 			<div>
 				<ul class="flex w-full">
