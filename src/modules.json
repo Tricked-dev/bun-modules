@@ -6,5 +6,6 @@
   "kysely-bun-sqlite",
   "svelte-adapter-bun",
   "@kapsonfire/bun-bakery",
-  "shumai"
+  "shumai",
+  "@purplet/gateway"
 ]

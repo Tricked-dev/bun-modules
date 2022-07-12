@@ -9,8 +9,9 @@ export async function getAllModules(): Promise<PKG[]> {
   const temp = [];
 
   for (const module of modules) {
-    temp.push(getModule(module));
+    temp.push(getModule(encodeURIComponent(module)));
   }
+
   const res = await Promise.all(temp);
   return res.filter((x) => x?.name);
 }
