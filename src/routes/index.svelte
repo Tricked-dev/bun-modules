@@ -63,7 +63,12 @@
 	<footer class="footer p-10 bg-neutral text-neutral-content mt-auto pt-4">
 		<div>
 			<p>This list is automatically fetched from npm api</p>
-			<p>Made by <a href="https://github.com/tricked-dev">tricked-dev</a></p>
+			<p>
+				Made by <a class="link link-hover link-secondary" href="https://github.com/tricked-dev"
+					>Tricked-dev</a
+				>
+			</p>
+			<a class="link link-hover" href="https://github.com/tricked-dev/bun-modules">Repository</a>
 		</div>
 		<div>
 			<p>
@@ -71,7 +76,6 @@
 					>bun</kbd
 				>
 			</p>
-			<a href="https://github.com/tricked-dev/bun-modules">Repository</a>
 		</div>
 	</footer>
 </div>

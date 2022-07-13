@@ -4,10 +4,15 @@
 	export let data: Module;
 </script>
 
-<div class="prose prose-headings:my-0 prose-p:my-0 bg-base-300 pb-4 max-w-none">
+<div
+	class="prose prose-headings:my-0 prose-p:my-0 bg-base-300 pb-4 max-w-none"
+	id={data.package.name}
+>
 	<div class="bg-primary px-4 flex">
 		<h3>
-			{data.package.name}
+			<a href={`#${data.package.name}`} class="no-underline">
+				{data.package.name}
+			</a>
 		</h3>
 		<span class="ml-auto">
 			[
